@@ -18,7 +18,7 @@ const MyTasks = () => {
   useEffect(() => {
     const fetchTasks = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/user/getTasks", {
+        const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}api/user/getTasks`, {
           withCredentials: true,
         });
 
@@ -43,7 +43,7 @@ const MyTasks = () => {
   const updateTaskStatus = async (taskId: string, newStatus: string) => {
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/task/status/${taskId}`,
+        `${import.meta.env.VITE_API_BASE_URL}api/task/status/${taskId}`,
         { status: newStatus },
         { withCredentials: true }
       );

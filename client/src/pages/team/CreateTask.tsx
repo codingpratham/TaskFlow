@@ -45,7 +45,7 @@ const TaskPage = () => {
   // Load teams
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/team/get", { withCredentials: true })
+      .get(`${import.meta.env.VITE_API_BASE_URL}api/team/get`, { withCredentials: true })
       .then((res) => {
         const teamList: Team[] = res.data.teams || [];
         setTeams(teamList);
@@ -67,7 +67,7 @@ const TaskPage = () => {
   // Load tasks
   const fetchTasks = () => {
     axios
-      .get("http://localhost:5000/api/task/get", { withCredentials: true })
+      .get(`${import.meta.env.VITE_API_BASE_URL}api/task/get`, { withCredentials: true })
       .then((res) => setTasks(res.data.tasks))
       .catch((err) => console.error("Error fetching tasks:", err));
   };
@@ -86,7 +86,7 @@ const TaskPage = () => {
     try {
       setLoading(true);
       await axios.post(
-        "http://localhost:5000/api/task/create",
+        `${import.meta.env.VITE_API_BASE_URL}api/task/create`,
         { title, description, teamId, projectId, assignedTo: assignee },
         { withCredentials: true }
       );

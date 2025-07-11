@@ -22,7 +22,7 @@ const InviteUser = () => {
   useEffect(() => {
     const getUsers = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/user/get", {
+        const res = await axios.get("${import.meta.env.VITE_API_BASE_URL}api/user/get", {
           withCredentials: true,
         });
         console.log("Fetched users:", res.data);
@@ -35,7 +35,7 @@ const InviteUser = () => {
 
     const fetchTeams = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/team/get", {
+        const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}api/team/get`, {
           withCredentials: true,
         });
         console.log("Fetched teams:", res.data);
@@ -60,7 +60,7 @@ const InviteUser = () => {
 
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/team/invite",
+        `${import.meta.env.VITE_API_BASE_URL}api/team/invite`,
         { email, teamId },
         { withCredentials: true }
       );

@@ -17,7 +17,7 @@ const TeamList = () => {
 
   const fetchTeams = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/team/get", {
+      const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}api/team/get`, {
         withCredentials: true,
       });
       setTeams(res.data.teams || []);
@@ -40,7 +40,7 @@ const TeamList = () => {
 
     try {
       await axios.post(
-        "http://localhost:5000/api/team/create",
+        `${import.meta.env.VITE_API_BASE_URL}api/team/create`,
         { name: newTeamName },
         { withCredentials: true }
       );

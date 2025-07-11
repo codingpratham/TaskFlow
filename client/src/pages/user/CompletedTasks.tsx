@@ -16,7 +16,7 @@ const CompletedTasks = () => {
   useEffect(() => {
     const fetchCompletedTasks = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/user/getTasks", {
+        const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}api/user/getTasks`, {
           withCredentials: true,
         });
 

@@ -18,7 +18,7 @@ const NavBar = () => {
   })();
 
   const handleLogout = async () => {
-    const res=await axios.post("http://localhost:5000/api/auth/logout");
+    const res=await axios.post(`${import.meta.env.VITE_API_BASE_URL}api/auth/logout`);
 
     if (res.status === 200) {
       console.log("Logout successful");

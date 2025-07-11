@@ -25,7 +25,7 @@ const CreateProjectPage = () => {
 
   const fetchProjects = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/team/projects", {
+      const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}api/team/projects`, {
         withCredentials: true,
       });
       setProjects(res.data.projects || []);
@@ -37,7 +37,7 @@ const CreateProjectPage = () => {
   useEffect(() => {
     fetchProjects();
     axios
-      .get("http://localhost:5000/api/team/get", { withCredentials: true })
+      .get(`${import.meta.env.VITE_API_BASE_URL}api/team/get`, { withCredentials: true })
       .then((res) => setTeams(res.data.teams || []))
       .catch((err) => console.error("Error fetching teams", err));
   }, []);
@@ -48,7 +48,7 @@ const CreateProjectPage = () => {
 
     try {
       await axios.post(
-        "http://localhost:5000/api/team/projects",
+        `${import.meta.env.VITE_API_BASE_URL}api/team/projects`,
         { name, description, teamId },
         { withCredentials: true }
       );

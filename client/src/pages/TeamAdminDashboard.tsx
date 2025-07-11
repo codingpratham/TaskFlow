@@ -19,7 +19,7 @@ const TeamAdminDashboard = () => {
 
   const fetchTeams = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/team/get", {
+      const res = await axios.get("${import.meta.env.VITE_API_BASE_URL}api/team/get", {
         withCredentials: true,
       });
       setUsersCount(res.data.usersCount || 0);
@@ -30,7 +30,7 @@ const TeamAdminDashboard = () => {
 
   const fetchProjects = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/team/projects", {
+      const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}api/team/projects`, {
         withCredentials: true,
       });
       setProjects(res.data.projects || []);
@@ -41,7 +41,7 @@ const TeamAdminDashboard = () => {
 
   const fetchTasks = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/task/get", {
+      const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}api/task/get`, {
         withCredentials: true,
       });
 
