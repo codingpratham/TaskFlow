@@ -1,8 +1,9 @@
+// server.ts
 import express, { Request, Response } from 'express';
 import dotenv from 'dotenv';
-import router from './router';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
+import router from './router';
 
 dotenv.config();
 
@@ -16,18 +17,16 @@ app.use(
   })
 );
 
-app.options("*", cors())
+app.options("*", cors());
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-
 app.use("/api", router);
 
-app.get("/", (req:Request, res:Response) => {
-  res.send("Welcome to the backend server!"); 
-})
-
+app.get("/", (req: Request, res: Response) => {
+  res.send("Welcome to the backend server!");
+});
 
 app.listen(PORT, () => {
   console.log(`Backend running on http://localhost:${PORT}`);
