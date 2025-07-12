@@ -22,7 +22,7 @@ const InviteUser = () => {
   useEffect(() => {
     const getUsers = async () => {
       try {
-        const res = await axios.get("${import.meta.env.VITE_API_BASE_URL}api/user/get", {
+        const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}api/user/get`, {
           withCredentials: true,
         });
         console.log("Fetched users:", res.data);

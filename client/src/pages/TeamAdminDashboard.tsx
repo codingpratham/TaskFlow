@@ -19,7 +19,7 @@ const TeamAdminDashboard = () => {
 
   const fetchTeams = async () => {
     try {
-      const res = await axios.get("${import.meta.env.VITE_API_BASE_URL}api/team/get", {
+      const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}api/team/get`, {
         withCredentials: true,
       });
       setUsersCount(res.data.usersCount || 0);
