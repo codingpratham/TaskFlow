@@ -3,22 +3,41 @@ import dotenv from 'dotenv';
 import router from './router';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
+
 dotenv.config();
 
-
 const app = express();
-app.use(cookieParser());
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
+
+// ✅ Multi-origin CORS support
+const allowedOrigins = [
+  'http://localhost:5173',                         
+  'https://2mbqcshr-5173.inc1.devtunnels.ms',      
+];
+
 app.use(cors({
-  origin: process.env.CLIENT_URL,
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      console.log(`❌ Blocked by CORS: ${origin}`);
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true
 }));
-console.log(`CORS enabled for ${process.env.CLIENT_URL}`);
 
+console.log('CORS allowed for:', allowedOrigins.join(', '));
+
+// ✅ Middlewares
+app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use("/api",router)
 
+// ✅ Routes
+app.use("/api", router);
+
+// ✅ Server
 app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+  console.log(`Backend running on http://localhost:${PORT}`);
 });
