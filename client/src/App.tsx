@@ -1,4 +1,4 @@
-import {  Routes, Route, BrowserRouter } from "react-router-dom";
+import {  Routes, Route } from "react-router-dom";
 
 import LoginPage from "./pages/LoginPage"; 
 import PrivateRoute from "./utils/privateRoute";
@@ -18,7 +18,7 @@ import AllTask from "./pages/user/AllTask";
 
 function App() {
   return (
-    <BrowserRouter>
+    
       <Routes>
         <Route path="*" element={
           <PrivateRoute allowedRoles={["USER", "TEAM_ADMIN"]}>
@@ -119,7 +119,6 @@ function App() {
         } />
        
       </Routes>
-    </BrowserRouter>
     
   );
 }
