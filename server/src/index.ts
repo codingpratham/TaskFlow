@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Request, Response } from 'express';
 import dotenv from 'dotenv';
 import router from './router';
 import cookieParser from 'cookie-parser';
@@ -20,7 +20,7 @@ app.use(cors({
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
-      console.log(`❌ Blocked by CORS: ${origin}`);
+      console.log(`Blocked by CORS: ${origin}`);
       callback(new Error('Not allowed by CORS'));
     }
   },
@@ -29,15 +29,19 @@ app.use(cors({
 
 console.log('CORS allowed for:', allowedOrigins.join(', '));
 
-// ✅ Middlewares
+
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// ✅ Routes
+
 app.use("/api", router);
 
-// ✅ Server
+app.get("/", (req:Request, res:Response) => {
+  res.send("Welcome to the backend server!"); 
+})
+
+
 app.listen(PORT, () => {
   console.log(`Backend running on http://localhost:${PORT}`);
 });
