@@ -13,6 +13,8 @@ app.use(cors({
   origin: process.env.CLIENT_URL,
   credentials: true
 }));
+console.log(`CORS enabled for ${process.env.CLIENT_URL}`);
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/api",router)

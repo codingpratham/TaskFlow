@@ -21,7 +21,7 @@ export const getNotifications = async (req: AuthRequest, res: Response) => {
             return res.status(404).json({ message: "No notifications found for this user" });
         }
 
-        const formattedNotifications = notifications.map((notification) => ({
+        const formattedNotifications = notifications.map((notification:any) => ({
             id: notification.id,
             message: notification.message,
             read: notification.read,
