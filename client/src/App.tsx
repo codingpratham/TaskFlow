@@ -18,7 +18,7 @@ import AllTask from "./pages/user/AllTask";
 
 function App() {
   return (
-    <BrowserRouter basename="/">
+    <BrowserRouter>
       <Routes>
         <Route path="*" element={
           <PrivateRoute allowedRoles={["USER", "TEAM_ADMIN"]}>
